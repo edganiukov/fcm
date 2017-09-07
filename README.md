@@ -37,11 +37,14 @@ func main() {
      		Token: "sample_device_token",
       		Data: map[string]interface{}{
          		"foo": "bar",
-      		}
+      		},
   	}
 
 	// Create a FCM client to send the message.
-	client := fcm.NewClient("sample_api_key")
+	client, err := fcm.NewClient("sample_api_key")
+	if err != nil {
+  		log.Fatal(err)
+	}
 
 	// Send the message and receive the response without retries.
 	response, err := client.Send(msg)
