@@ -89,11 +89,7 @@ func (c *Client) SendWithRetry(msg *Message, retryAttempts int) (*Response, erro
 		resp, err = c.send(data)
 		return err
 	}, retryAttempts)
-	if err != nil {
-		return nil, err
-	}
-
-	return resp, nil
+	return resp, err
 }
 
 // send sends a request.
@@ -115,19 +111,16 @@ func (c *Client) send(data []byte) (*Response, error) {
 	}
 	defer resp.Body.Close()
 
-	// check response status
-	if resp.StatusCode != http.StatusOK {
-		if resp.StatusCode >= http.StatusInternalServerError {
-			return nil, serverError(fmt.Sprintf("%d error: %s", resp.StatusCode, resp.Status))
-		}
-		return nil, fmt.Errorf("%d error: %s", resp.StatusCode, resp.Status)
-	}
-
 	// build return
 	response := new(Response)
+	response.StatusCode = resp.StatusCode
+
+	// check response status
+	if resp.StatusCode != http.StatusOK {
+		return response, serverError(fmt.Sprintf("%d error: %s", resp.StatusCode, resp.Status))
+	}
 	if err := json.NewDecoder(resp.Body).Decode(response); err != nil {
 		return nil, err
 	}
-
 	return response, nil
 }

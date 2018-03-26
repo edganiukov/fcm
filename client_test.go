@@ -71,8 +71,8 @@ func TestSend(t *testing.T) {
 		if err == nil {
 			t.Fatal("expected error but got nil")
 		}
-		if resp != nil {
-			t.Fatalf("expected nil response\ngot: %v response", resp)
+		if resp.StatusCode != http.StatusBadRequest {
+			t.Fatalf("expected %d status code response\ngot: %d", http.StatusBadRequest, resp.StatusCode)
 		}
 	})
 
@@ -207,8 +207,8 @@ func TestSendWithRetry(t *testing.T) {
 		if err == nil {
 			t.Fatal("expected error\ngot nil")
 		}
-		if resp != nil {
-			t.Fatalf("expected nil response\ngot: %v response", resp)
+		if resp.StatusCode != http.StatusBadRequest {
+			t.Fatalf("expected %d status code response\ngot: %d", http.StatusBadRequest, resp.StatusCode)
 		}
 	})
 

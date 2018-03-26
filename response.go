@@ -104,6 +104,7 @@ type Response struct {
 	Success      int      `json:"success"`
 	Failure      int      `json:"failure"`
 	CanonicalIDs int      `json:"canonical_ids"`
+	StatusCode   int      `json:"error_code"`
 	Results      []Result `json:"results"`
 }
 
