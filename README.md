@@ -14,12 +14,18 @@ To install fcm, use `go get`:
 ```bash
 go get github.com/edganiukov/fcm
 ```
-or `govendor`:
+or `dep`, add to the `Gopkg.toml` file dependency:
+
+```toml
+[[constraint]]
+  name = "github.com/edganiukov/fcm"
+  version = "0.3.0"
+```
+and then run:
 
 ```bash
-govendor fetch github.com/edganiukov/fcm
+dep ensure
 ```
-or other tool for vendoring.
 
 ### Sample Usage
 ----------------
