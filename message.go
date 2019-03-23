@@ -22,18 +22,20 @@ var (
 // Notification specifies the predefined, user-visible key-value pairs of the
 // notification payload.
 type Notification struct {
-	Title        string `json:"title,omitempty"`
-	Body         string `json:"body,omitempty"`
-	Icon         string `json:"icon,omitempty"`
-	Sound        string `json:"sound,omitempty"`
-	Badge        string `json:"badge,omitempty"`
-	Tag          string `json:"tag,omitempty"`
-	Color        string `json:"color,omitempty"`
-	ClickAction  string `json:"click_action,omitempty"`
-	BodyLocKey   string `json:"body_loc_key,omitempty"`
-	BodyLocArgs  string `json:"body_loc_args,omitempty"`
-	TitleLocKey  string `json:"title_loc_key,omitempty"`
-	TitleLocArgs string `json:"title_loc_args,omitempty"`
+	Title            string `json:"title,omitempty"`
+	Body             string `json:"body,omitempty"`
+	AndroidChannelId string `json:"android_channel_id,omitempty"`
+	Icon             string `json:"icon,omitempty"`
+	Sound            string `json:"sound,omitempty"`
+	Badge            string `json:"badge,omitempty"`
+	Tag              string `json:"tag,omitempty"`
+	Color            string `json:"color,omitempty"`
+	ClickAction      string `json:"click_action,omitempty"`
+	Subtitle         string `json:"subtitle,omitempty"`
+	BodyLocKey       string `json:"body_loc_key,omitempty"`
+	BodyLocArgs      string `json:"body_loc_args,omitempty"`
+	TitleLocKey      string `json:"title_loc_key,omitempty"`
+	TitleLocArgs     string `json:"title_loc_args,omitempty"`
 }
 
 // Message represents list of targets, options, and payload for HTTP JSON
@@ -45,8 +47,10 @@ type Message struct {
 	CollapseKey              string                 `json:"collapse_key,omitempty"`
 	Priority                 string                 `json:"priority,omitempty"`
 	ContentAvailable         bool                   `json:"content_available,omitempty"`
+	MutableContent           bool                   `json:"mutable_content,omitempty"`
 	DelayWhileIdle           bool                   `json:"delay_while_idle,omitempty"`
 	TimeToLive               int                    `json:"time_to_live,omitempty"`
+	RestrictedPackageName    string                 `json:"restricted_package_name,omitempty"`
 	DeliveryReceiptRequested bool                   `json:"delivery_receipt_requested,omitempty"`
 	DryRun                   bool                   `json:"dry_run,omitempty"`
 	Notification             *Notification          `json:"notification,omitempty"`
